@@ -24,8 +24,6 @@ padding:10px;
 border-radius:10px;
 border:none;
 width:200px;
-background:white;
-color:black;
 }
 
 button{
@@ -35,7 +33,6 @@ border-radius:20px;
 background:#ff2e7a;
 color:white;
 font-size:16px;
-box-shadow:0 0 10px #ff2e7a;
 cursor:pointer;
 }
 
@@ -44,7 +41,6 @@ margin-top:50px;
 background:rgba(255,255,255,0.25);
 padding:20px;
 border-radius:20px;
-backdrop-filter:blur(10px);
 width:85%;
 max-width:420px;
 margin-left:auto;
@@ -61,10 +57,39 @@ border-radius:10px;
 cursor:pointer;
 }
 
+.option:hover{
+background:#ffd6e8;
+}
+
 .gift{
-font-size:60px;
+font-size:45px;
 cursor:pointer;
 margin-top:40px;
+animation:shake 1s infinite;
+}
+
+@keyframes shake{
+0%{transform:rotate(0)}
+25%{transform:rotate(5deg)}
+50%{transform:rotate(-5deg)}
+75%{transform:rotate(5deg)}
+100%{transform:rotate(0)}
+}
+
+.progress{
+width:250px;
+height:18px;
+background:#ffd6e8;
+border-radius:20px;
+margin:15px auto;
+overflow:hidden;
+}
+
+#bar{
+height:100%;
+width:0%;
+background:#ff2e7a;
+transition:0.2s;
 }
 
 .letter{
@@ -77,18 +102,14 @@ max-width:420px;
 margin:auto;
 margin-top:30px;
 display:none;
-animation:open 1s;
-}
-
-@keyframes open{
-from{transform:scale(0.5);opacity:0}
-to{transform:scale(1);opacity:1}
+line-height:1.6;
 }
 
 .heart{
 position:fixed;
 color:pink;
-animation:fall 5s linear infinite;
+animation:fall 6s linear infinite;
+pointer-events:none;
 }
 
 @keyframes fall{
@@ -116,41 +137,40 @@ animation:fall 5s linear infinite;
 </div>
 
 
-<div id="quiz" style="display:none;"></div>
+<div id="quiz"></div>
 
 
-<div id="giftBox" style="display:none;">
+<div id="giftBox" style="display:none">
 
 <h2>🎉 Hoàn thành rồi 🎉</h2>
 
-<p>Bấm vào hộp quà</p>
+<p>Bấm hộp quà 100 lần để mở</p>
 
-<div class="gift" onclick="openGift()">🎁</div>
+<div class="gift" onclick="tapGift()">🎁</div>
+
+<div class="progress">
+<div id="bar"></div>
+</div>
+
+<p id="count">0 / 100</p>
 
 </div>
 
 
 <div class="letter" id="letter">
 
-<h3>💌 Gửi em 💌</h3>
+<h3>💌 Thư Valentine 💌</h3>
 
 <p>
-Anh làm cái web nhỏ này chỉ để nói rằng…<br><br>
 
-Em thật sự rất đặc biệt với anh.<br><br>
+Hôm nay là Valentine 14/3, ngày mà em muốn nói với anh những điều em vẫn luôn giữ trong lòng. Trong thế giới rộng lớn này, có hàng triệu người lướt qua nhau, nhưng thật may mắn vì em đã gặp được anh. Em vẫn luôn nghĩ rằng việc hai người gặp nhau, quen nhau rồi ở lại bên nhau không phải là chuyện hiển nhiên, nên đôi khi em cũng tự hỏi tại sao giữa rất nhiều người như vậy, em lại gặp đúng anh. Anh không phải kiểu người lãng mạn, cũng không giỏi nói những lời ngọt ngào, thậm chí có lúc còn hơi ngốc nữa, nhiều chuyện em phải nói ra anh mới hiểu, phải nhắc thì anh mới để ý. Có những lúc em cũng giận, cũng tủi thân, vì em nghĩ giá như anh tinh ý hơn một chút thì tốt biết mấy. Nhưng rồi nghĩ lại, em vẫn nhận ra rằng dù anh có ngốc nghếch trong cách thể hiện thế nào đi nữa, anh vẫn là người mà em muốn ở cạnh. Có lẽ vì ở bên anh, mọi thứ rất thật, không màu mè, không cố gắng trở thành một phiên bản hoàn hảo nào cả. Em có thể giận dỗi, có thể cằn nhằn, có thể nói nhiều đến mức chính em cũng thấy mình phiền, nhưng anh vẫn ở đó.
 
-Từng câu hỏi ở trên đều là những điều anh muốn hiểu về em.<br><br>
+Valentine này em không muốn nói những lời quá hoa mỹ, em chỉ muốn nói thật lòng rằng ở bên anh em đã có rất nhiều cảm xúc, có lúc vui, có lúc buồn, có lúc bực mình đến mức chỉ muốn đánh anh một cái vì cái đầu ngốc của anh, nhưng cuối cùng thì em vẫn không muốn mất anh. Nếu có điều gì em mong ở anh, thì chỉ là sau này anh có thể hiểu em nhiều hơn một chút, để ý em nhiều hơn một chút, đừng để em lúc nào cũng phải nói ra hết mọi thứ. Nhưng dù sao đi nữa, em vẫn rất biết ơn vì anh đã xuất hiện trong cuộc đời em, vì giữa rất nhiều người ngoài kia, người đang ở cạnh em hôm nay lại là anh. Chúc anh một Valentine 14/3 thật vui, và nếu có thể thì hy vọng những Valentine sau này… người đứng cạnh anh vẫn sẽ là em.
 
-Anh muốn nhớ hết mọi thứ em thích, em ghét,
-những điều khiến em vui, và cả lúc em buồn.<br><br>
-
-Nếu sau này em có buồn nữa<br>
-hãy nhớ rằng luôn có anh ở đây.<br><br>
-
-💞 Happy Valentine 💞
 </p>
 
 </div>
+
 
 <script>
 
@@ -168,7 +188,7 @@ startQuiz()
 
 }else{
 
-alert("Sai mật khẩu rồi")
+alert("Sai mật khẩu")
 
 }
 
@@ -177,76 +197,23 @@ alert("Sai mật khẩu rồi")
 
 let questions=[
 
-{
-q:"1. Món ăn em thích nhất là gì?",
-o:["A. Gà rán","B. Khoai tây","C. Mì ý","D. Sushi"],
-a:1
-},
-
-{
-q:"2. Đồ uống em thích nhất là:",
-o:["A. Trà đào","B. Matcha latte / socola","C. Cà phê sữa","D. Trà sữa"],
-a:1
-},
-
-{
-q:"3. Em thích anh gọi em bằng gì nhất?",
-o:["A. Bé","B. Cục cưng","C. Công chúa nhỏ","D. Em yêu"],
-a:2
-},
-
-{
-q:"4. Khi em buồn, em muốn anh làm gì nhất?",
-o:["A. Để em yên một mình","B. Nhắn 'ổn không'","C. Nhẹ nhàng dỗ dành và quan tâm","D. Mua đồ ăn"],
-a:2
-},
-
-{
-q:"5. Đi chơi với em, em thích nhất là:",
-o:["A. Đi xem phim","B. Đi ăn","C. Đi dạo","D. Đi TTTM"],
-a:1
-},
-
-{
-q:"6. Điều em ghét nhất khi anh làm là:",
-o:["A. Ít nhắn tin","B. Chơi game nhiều","C. Vô tâm khi em khó chịu","D. Ngủ sớm"],
-a:2
-},
-
-{
-q:"7. Thể loại phim em thích là:",
-o:["A. Hài","B. Hành động","C. Kinh dị / ngôn tình","D. Hoạt hình"],
-a:2
-},
-
-{
-q:"8. Điều nhỏ khiến em vui là:",
-o:["A. Anh nhắn mỗi ngày","B. Nhớ ngày đặc biệt","C. Tạo bất ngờ","D. Chọc em cười"],
-a:2
-},
-
-{
-q:"9. Nếu anh muốn làm em cảm động:",
-o:["A. Tặng quà đắt tiền","B. Đi chơi xa","C. Làm điều bất ngờ","D. Nhắn tin ngọt"],
-a:2
-},
-
-{
-q:"10. Nếu anh tặng quà cho em:",
-o:["A. Phải đúng thứ em thích","B. Phải đắt tiền","C. Chỉ cần anh tặng","D. Không cần quà"],
-a:2
-}
+{q:"1. Món ăn em thích nhất là gì?",o:["Gà rán","Khoai tây","Mì ý","Sushi"],a:1},
+{q:"2. Đồ uống em thích nhất là:",o:["Trà đào","Matcha latte / socola","Cà phê sữa","Trà sữa"],a:1},
+{q:"3. Em thích anh gọi em bằng gì nhất?",o:["Bé","Cục cưng","Công chúa nhỏ","Em yêu"],a:2},
+{q:"4. Khi em buồn, em muốn anh làm gì nhất?",o:["Để em yên một mình","Nhắn ổn không","Nhẹ nhàng dỗ dành và quan tâm","Mua đồ ăn"],a:2},
+{q:"5. Đi chơi với em, em thích nhất là:",o:["Đi xem phim","Đi ăn","Đi dạo","Đi trung tâm thương mại"],a:1},
+{q:"6. Điều em ghét nhất khi anh làm là:",o:["Ít nhắn tin","Chơi game nhiều","Vô tâm khi em khó chịu","Ngủ sớm"],a:2},
+{q:"7. Thể loại phim em thích là:",o:["Hài","Hành động","Kinh dị / ngôn tình","Hoạt hình"],a:2},
+{q:"8. Điều nhỏ khiến em vui là:",o:["Anh nhắn mỗi ngày","Nhớ ngày đặc biệt","Tạo bất ngờ","Chọc em cười"],a:2},
+{q:"9. Nếu anh muốn làm em cảm động:",o:["Tặng quà đắt tiền","Đi chơi xa","Làm điều bất ngờ","Nhắn tin ngọt"],a:2},
+{q:"10. Nếu anh tặng quà cho em:",o:["Phải đúng thứ em thích","Phải đắt tiền","Chỉ cần anh tặng","Không cần quà"],a:2}
 
 ]
 
 let current=0
 
 function startQuiz(){
-
-document.getElementById("quiz").style.display="block"
-
 showQuestion()
-
 }
 
 function showQuestion(){
@@ -258,9 +225,7 @@ let html="<div class='question-box'>"
 html+="<h3>"+q.q+"</h3>"
 
 for(let i=0;i<q.o.length;i++){
-
 html+="<div class='option' onclick='answer("+i+")'>"+q.o[i]+"</div>"
-
 }
 
 html+="</div>"
@@ -278,7 +243,6 @@ current++
 if(current>=questions.length){
 
 document.getElementById("quiz").style.display="none"
-
 document.getElementById("giftBox").style.display="block"
 
 }else{
@@ -295,13 +259,36 @@ alert("Sai rồi trả lời lại nha")
 
 }
 
-function openGift(){
 
+let tap=0
+
+function tapGift(){
+
+tap++
+
+let percent=tap
+
+document.getElementById("bar").style.width=percent+"%"
+
+document.getElementById("count").innerText=tap+" / 100"
+
+if(tap>=100){
+
+document.querySelector(".gift").innerHTML="💥"
+
+setTimeout(function(){
+
+document.getElementById("giftBox").style.display="none"
 document.getElementById("letter").style.display="block"
+
+},800)
 
 }
 
-for(let i=0;i<25;i++){
+}
+
+
+for(let i=0;i<30;i++){
 
 let h=document.createElement("div")
 
