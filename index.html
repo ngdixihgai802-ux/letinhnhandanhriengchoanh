@@ -1,29 +1,44 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Valentine bí mật</title>
+<title>Valentine 14/3</title>
 
 <style>
 
 body{
 margin:0;
 font-family:Arial;
-background:linear-gradient(135deg,#ff9a9e,#fad0c4);
 text-align:center;
 color:white;
 overflow:hidden;
+background:black;
+}
+
+/* nền galaxy */
+
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+background:url("https://i.imgur.com/9QZ7K8Q.png");
+animation:galaxy 60s linear infinite;
+opacity:0.4;
+}
+
+@keyframes galaxy{
+0%{transform:translate(0,0)}
+100%{transform:translate(-50%,-50%)}
 }
 
 .container{
 margin-top:60px;
+position:relative;
+z-index:2;
 }
-
-/* nút */
 
 button{
 padding:12px 20px;
@@ -69,7 +84,7 @@ cursor:pointer;
 width:80%;
 max-width:450px;
 height:25px;
-background:#ddd;
+background:#333;
 margin:auto;
 border-radius:20px;
 overflow:hidden;
@@ -79,7 +94,7 @@ overflow:hidden;
 height:100%;
 width:0%;
 background:#ff4d6d;
-transition:0.2s;
+transition:0.1s;
 }
 
 /* phong bì */
@@ -114,9 +129,10 @@ color:black;
 padding:30px;
 border-radius:20px;
 width:90%;
-max-width:700px;
+max-width:750px;
 margin:auto;
 font-size:18px;
+line-height:1.6;
 }
 
 /* tim bay */
@@ -137,7 +153,7 @@ animation:fly 5s linear infinite;
 
 #love{
 display:none;
-font-size:90px;
+font-size:100px;
 animation:pop 2s forwards;
 }
 
@@ -146,12 +162,26 @@ animation:pop 2s forwards;
 100%{transform:scale(1)}
 }
 
+/* rung màn hình */
+
+.shakeScreen{
+animation:screenShake 0.5s;
+}
+
+@keyframes screenShake{
+0%{transform:translate(0)}
+25%{transform:translate(10px)}
+50%{transform:translate(-10px)}
+75%{transform:translate(10px)}
+100%{transform:translate(0)}
+}
+
 /* pháo hoa */
 
 .firework{
 position:fixed;
-width:10px;
-height:10px;
+width:8px;
+height:8px;
 background:yellow;
 border-radius:50%;
 animation:boom 1s forwards;
@@ -159,11 +189,10 @@ animation:boom 1s forwards;
 
 @keyframes boom{
 0%{transform:scale(1)}
-100%{transform:scale(25);opacity:0}
+100%{transform:scale(30);opacity:0}
 }
 
 </style>
-
 </head>
 
 <body>
@@ -174,98 +203,13 @@ animation:boom 1s forwards;
 
 <div id="login">
 
-<p>Nhập mật khẩu để vào</p>
+<p>Nhập mật khẩu</p>
 
 <input id="pass" type="password">
 
 <br><br>
 
 <button onclick="checkPass()">Vào</button>
-
-</div>
-
-
-<div id="quiz">
-
-<div class="question" id="q1">
-<h3>1. Món ăn em thích nhất?</h3>
-<button onclick="wrong()">A. Gà rán</button>
-<button onclick="correct(2)">B. Khoai tây</button>
-<button onclick="wrong()">C. Mì ý</button>
-<button onclick="wrong()">D. Sushi</button>
-</div>
-
-<div class="question" id="q2">
-<h3>2. Đồ uống em thích?</h3>
-<button onclick="wrong()">A. Trà đào</button>
-<button onclick="correct(3)">B. Matcha latte</button>
-<button onclick="wrong()">C. Cà phê</button>
-<button onclick="wrong()">D. Trà sữa</button>
-</div>
-
-<div class="question" id="q3">
-<h3>3. Em thích anh gọi em?</h3>
-<button onclick="wrong()">A. Bé</button>
-<button onclick="wrong()">B. Cục cưng</button>
-<button onclick="correct(4)">C. Công chúa nhỏ</button>
-<button onclick="wrong()">D. Em yêu</button>
-</div>
-
-<div class="question" id="q4">
-<h3>4. Khi em buồn?</h3>
-<button onclick="wrong()">A. Để yên</button>
-<button onclick="wrong()">B. Nhắn ổn không</button>
-<button onclick="correct(5)">C. Dỗ dành</button>
-<button onclick="wrong()">D. Mua đồ ăn</button>
-</div>
-
-<div class="question" id="q5">
-<h3>5. Đi chơi thích?</h3>
-<button onclick="wrong()">A. Xem phim</button>
-<button onclick="correct(6)">B. Đi ăn</button>
-<button onclick="wrong()">C. Đi dạo</button>
-<button onclick="wrong()">D. Mall</button>
-</div>
-
-<div class="question" id="q6">
-<h3>6. Điều ghét nhất?</h3>
-<button onclick="wrong()">A. Ít nhắn</button>
-<button onclick="wrong()">B. Chơi game</button>
-<button onclick="correct(7)">C. Vô tâm</button>
-<button onclick="wrong()">D. Ngủ sớm</button>
-</div>
-
-<div class="question" id="q7">
-<h3>7. Phim thích?</h3>
-<button onclick="wrong()">A. Hài</button>
-<button onclick="wrong()">B. Hành động</button>
-<button onclick="correct(8)">C. Kinh dị</button>
-<button onclick="wrong()">D. Hoạt hình</button>
-</div>
-
-<div class="question" id="q8">
-<h3>8. Điều nhỏ khiến em vui?</h3>
-<button onclick="wrong()">A. Nhắn tin</button>
-<button onclick="wrong()">B. Nhớ ngày</button>
-<button onclick="correct(9)">C. Bất ngờ</button>
-<button onclick="wrong()">D. Chọc cười</button>
-</div>
-
-<div class="question" id="q9">
-<h3>9. Làm em cảm động?</h3>
-<button onclick="wrong()">A. Quà đắt</button>
-<button onclick="wrong()">B. Đi xa</button>
-<button onclick="correct(10)">C. Bất ngờ</button>
-<button onclick="wrong()">D. Nhắn ngọt</button>
-</div>
-
-<div class="question" id="q10">
-<h3>10. Nếu anh tặng quà?</h3>
-<button onclick="wrong()">A. Đúng món</button>
-<button onclick="wrong()">B. Đắt tiền</button>
-<button onclick="showGift()">C. Anh tặng là thích</button>
-<button onclick="wrong()">D. Không cần</button>
-</div>
 
 </div>
 
@@ -295,6 +239,8 @@ animation:boom 1s forwards;
 
 </div>
 
+</div>
+
 
 <script>
 
@@ -305,33 +251,13 @@ let p=document.getElementById("pass").value
 if(p=="28070808"){
 
 document.getElementById("login").style.display="none"
-document.getElementById("q1").style.display="block"
+document.getElementById("gift").style.display="block"
 
 }else{
 
 alert("Sai mật khẩu rồi :<")
 
 }
-
-}
-
-function correct(next){
-
-document.getElementById("q"+(next-1)).style.display="none"
-document.getElementById("q"+next).style.display="block"
-
-}
-
-function wrong(){
-
-alert("Sai rồi trả lời lại đi :))")
-
-}
-
-function showGift(){
-
-document.getElementById("q10").style.display="none"
-document.getElementById("gift").style.display="block"
 
 }
 
@@ -349,23 +275,27 @@ if(clicks>=100){
 
 fireworks()
 
+document.body.classList.add("shakeScreen")
+
 document.getElementById("gift").style.display="none"
 
 document.getElementById("love").style.display="block"
 
 setTimeout(()=>{
+
 document.getElementById("envelope").style.display="block"
+
 },2000)
 
 }
 
 }
 
-/* pháo hoa */
+/* pháo hoa full màn */
 
 function fireworks(){
 
-for(let i=0;i<40;i++){
+for(let i=0;i<80;i++){
 
 let f=document.createElement("div")
 
@@ -395,15 +325,11 @@ typeLetter()
 
 }
 
-/* chữ hiện */
+/* nội dung thư */
 
-let message=`Hôm nay là Valentine 14/3...
+let message=`Hôm nay là Valentine 14/3, ngày mà em muốn nói với anh những điều em vẫn luôn giữ trong lòng. Trong thế giới rộng lớn này, có hàng triệu người lướt qua nhau, nhưng thật may mắn vì em đã gặp được anh. Em vẫn luôn nghĩ rằng việc hai người gặp nhau, quen nhau rồi ở lại bên nhau không phải là chuyện hiển nhiên, nên đôi khi em cũng tự hỏi tại sao giữa rất nhiều người như vậy, em lại gặp đúng anh. Anh không phải kiểu người lãng mạn, cũng không giỏi nói những lời ngọt ngào, thậm chí có lúc còn hơi ngốc nữa, nhiều chuyện em phải nói ra anh mới hiểu, phải nhắc thì anh mới để ý. Có những lúc em cũng giận, cũng tủi thân, vì em nghĩ giá như anh tinh ý hơn một chút thì tốt biết mấy. Nhưng rồi nghĩ lại, em vẫn nhận ra rằng dù anh có ngốc nghếch trong cách thể hiện thế nào đi nữa, anh vẫn là người mà em muốn ở cạnh. Có lẽ vì ở bên anh, mọi thứ rất thật, không màu mè, không cố gắng trở thành một phiên bản hoàn hảo nào cả. Em có thể giận dỗi, có thể cằn nhằn, có thể nói nhiều đến mức chính em cũng thấy mình phiền, nhưng anh vẫn ở đó.
 
-Trong thế giới rộng lớn này có hàng triệu người nhưng em lại gặp đúng anh.
-
-Anh có thể không lãng mạn nhưng anh vẫn là người em muốn ở cạnh.
-
-Hy vọng những Valentine sau này người đứng cạnh anh vẫn là em.`
+Valentine này em không muốn nói những lời quá hoa mỹ, em chỉ muốn nói thật lòng rằng ở bên anh em đã có rất nhiều cảm xúc, có lúc vui, có lúc buồn, có lúc bực mình đến mức chỉ muốn đánh anh một cái vì cái đầu ngốc của anh, nhưng cuối cùng thì em vẫn không muốn mất anh. Nếu có điều gì em mong ở anh, thì chỉ là sau này anh có thể hiểu em nhiều hơn một chút, để ý em nhiều hơn một chút, đừng để em lúc nào cũng phải nói ra hết mọi thứ. Nhưng dù sao đi nữa, em vẫn rất biết ơn vì anh đã xuất hiện trong cuộc đời em, vì giữa rất nhiều người ngoài kia, người đang ở cạnh em hôm nay lại là anh. Chúc anh một Valentine 14/3 thật vui, và nếu có thể thì hy vọng những Valentine sau này… người đứng cạnh anh vẫn sẽ là em.`
 
 let i=0
 
@@ -415,7 +341,7 @@ document.getElementById("text").innerHTML+=message.charAt(i)
 
 i++
 
-setTimeout(typeLetter,40)
+setTimeout(typeLetter,30)
 
 }
 
