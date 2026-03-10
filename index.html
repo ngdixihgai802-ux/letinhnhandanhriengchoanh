@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Valentine bí mật</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+text-align:center;
+color:white;
+overflow:hidden;
+}
+
+.container{
+margin-top:60px;
+}
+
+/* nút */
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:#ff4d6d;
+color:white;
+font-size:16px;
+margin:5px;
+cursor:pointer;
+}
+
+input{
+padding:10px;
+border-radius:10px;
+border:none;
+}
+
+.question{
+display:none;
+}
+
+/* hộp quà */
+
+#gift{
+font-size:120px;
+display:none;
+animation:shake 0.7s infinite;
+cursor:pointer;
+}
+
+@keyframes shake{
+0%{transform:rotate(0)}
+25%{transform:rotate(-8deg)}
+50%{transform:rotate(8deg)}
+75%{transform:rotate(-8deg)}
+100%{transform:rotate(0)}
+}
+
+/* thanh tiến trình */
+
+.progress{
+width:80%;
+max-width:450px;
+height:25px;
+background:#ddd;
+margin:auto;
+border-radius:20px;
+overflow:hidden;
+}
+
+.bar{
+height:100%;
+width:0%;
+background:#ff4d6d;
+transition:0.2s;
+}
+
+/* phong bì */
+
+#envelope{
+display:none;
+width:220px;
+height:140px;
+background:white;
+margin:auto;
+cursor:pointer;
+position:relative;
+border-radius:10px;
+}
+
+#envelope:before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+border-top:70px solid #ff4d6d;
+border-left:110px solid transparent;
+border-right:110px solid transparent;
+}
+
+/* thư */
+
+#letter{
+display:none;
+background:white;
+color:black;
+padding:30px;
+border-radius:20px;
+width:90%;
+max-width:700px;
+margin:auto;
+font-size:18px;
+}
+
+/* tim bay */
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:fly 5s linear infinite;
+}
+
+@keyframes fly{
+0%{transform:translateY(0);opacity:1}
+100%{transform:translateY(-110vh);opacity:0}
+}
+
+/* tim ghép */
+
+#love{
+display:none;
+font-size:90px;
+animation:pop 2s forwards;
+}
+
+@keyframes pop{
+0%{transform:scale(0)}
+100%{transform:scale(1)}
+}
+
+/* pháo hoa */
+
+.firework{
+position:fixed;
+width:10px;
+height:10px;
+background:yellow;
+border-radius:50%;
+animation:boom 1s forwards;
+}
+
+@keyframes boom{
+0%{transform:scale(1)}
+100%{transform:scale(25);opacity:0}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💌 Valentine bí mật 💌</h1>
+
+<div id="login">
+
+<p>Nhập mật khẩu để vào</p>
+
+<input id="pass" type="password">
+
+<br><br>
+
+<button onclick="checkPass()">Vào</button>
+
+</div>
+
+
+<div id="quiz">
+
+<div class="question" id="q1">
+<h3>1. Món ăn em thích nhất?</h3>
+<button onclick="wrong()">A. Gà rán</button>
+<button onclick="correct(2)">B. Khoai tây</button>
+<button onclick="wrong()">C. Mì ý</button>
+<button onclick="wrong()">D. Sushi</button>
+</div>
+
+<div class="question" id="q2">
+<h3>2. Đồ uống em thích?</h3>
+<button onclick="wrong()">A. Trà đào</button>
+<button onclick="correct(3)">B. Matcha latte</button>
+<button onclick="wrong()">C. Cà phê</button>
+<button onclick="wrong()">D. Trà sữa</button>
+</div>
+
+<div class="question" id="q3">
+<h3>3. Em thích anh gọi em?</h3>
+<button onclick="wrong()">A. Bé</button>
+<button onclick="wrong()">B. Cục cưng</button>
+<button onclick="correct(4)">C. Công chúa nhỏ</button>
+<button onclick="wrong()">D. Em yêu</button>
+</div>
+
+<div class="question" id="q4">
+<h3>4. Khi em buồn?</h3>
+<button onclick="wrong()">A. Để yên</button>
+<button onclick="wrong()">B. Nhắn ổn không</button>
+<button onclick="correct(5)">C. Dỗ dành</button>
+<button onclick="wrong()">D. Mua đồ ăn</button>
+</div>
+
+<div class="question" id="q5">
+<h3>5. Đi chơi thích?</h3>
+<button onclick="wrong()">A. Xem phim</button>
+<button onclick="correct(6)">B. Đi ăn</button>
+<button onclick="wrong()">C. Đi dạo</button>
+<button onclick="wrong()">D. Mall</button>
+</div>
+
+<div class="question" id="q6">
+<h3>6. Điều ghét nhất?</h3>
+<button onclick="wrong()">A. Ít nhắn</button>
+<button onclick="wrong()">B. Chơi game</button>
+<button onclick="correct(7)">C. Vô tâm</button>
+<button onclick="wrong()">D. Ngủ sớm</button>
+</div>
+
+<div class="question" id="q7">
+<h3>7. Phim thích?</h3>
+<button onclick="wrong()">A. Hài</button>
+<button onclick="wrong()">B. Hành động</button>
+<button onclick="correct(8)">C. Kinh dị</button>
+<button onclick="wrong()">D. Hoạt hình</button>
+</div>
+
+<div class="question" id="q8">
+<h3>8. Điều nhỏ khiến em vui?</h3>
+<button onclick="wrong()">A. Nhắn tin</button>
+<button onclick="wrong()">B. Nhớ ngày</button>
+<button onclick="correct(9)">C. Bất ngờ</button>
+<button onclick="wrong()">D. Chọc cười</button>
+</div>
+
+<div class="question" id="q9">
+<h3>9. Làm em cảm động?</h3>
+<button onclick="wrong()">A. Quà đắt</button>
+<button onclick="wrong()">B. Đi xa</button>
+<button onclick="correct(10)">C. Bất ngờ</button>
+<button onclick="wrong()">D. Nhắn ngọt</button>
+</div>
+
+<div class="question" id="q10">
+<h3>10. Nếu anh tặng quà?</h3>
+<button onclick="wrong()">A. Đúng món</button>
+<button onclick="wrong()">B. Đắt tiền</button>
+<button onclick="showGift()">C. Anh tặng là thích</button>
+<button onclick="wrong()">D. Không cần</button>
+</div>
+
+</div>
+
+
+<div id="gift">
+
+🎁
+
+<p>Nhấn 100 lần để mở quà</p>
+
+<div class="progress">
+<div class="bar" id="bar"></div>
+</div>
+
+</div>
+
+
+<div id="love">💞</div>
+
+<div id="envelope"></div>
+
+<div id="letter">
+
+<h2>💖 Gửi anh 💖</h2>
+
+<p id="text"></p>
+
+</div>
+
+
+<script>
+
+function checkPass(){
+
+let p=document.getElementById("pass").value
+
+if(p=="28070808"){
+
+document.getElementById("login").style.display="none"
+document.getElementById("q1").style.display="block"
+
+}else{
+
+alert("Sai mật khẩu rồi :<")
+
+}
+
+}
+
+function correct(next){
+
+document.getElementById("q"+(next-1)).style.display="none"
+document.getElementById("q"+next).style.display="block"
+
+}
+
+function wrong(){
+
+alert("Sai rồi trả lời lại đi :))")
+
+}
+
+function showGift(){
+
+document.getElementById("q10").style.display="none"
+document.getElementById("gift").style.display="block"
+
+}
+
+let clicks=0
+
+document.getElementById("gift").onclick=function(){
+
+clicks++
+
+let percent=(clicks/100)*100
+
+document.getElementById("bar").style.width=percent+"%"
+
+if(clicks>=100){
+
+fireworks()
+
+document.getElementById("gift").style.display="none"
+
+document.getElementById("love").style.display="block"
+
+setTimeout(()=>{
+document.getElementById("envelope").style.display="block"
+},2000)
+
+}
+
+}
+
+/* pháo hoa */
+
+function fireworks(){
+
+for(let i=0;i<40;i++){
+
+let f=document.createElement("div")
+
+f.className="firework"
+
+f.style.left=Math.random()*100+"vw"
+
+f.style.top=Math.random()*100+"vh"
+
+document.body.appendChild(f)
+
+setTimeout(()=>f.remove(),1000)
+
+}
+
+}
+
+/* mở phong bì */
+
+document.getElementById("envelope").onclick=function(){
+
+document.getElementById("envelope").style.display="none"
+
+document.getElementById("letter").style.display="block"
+
+typeLetter()
+
+}
+
+/* chữ hiện */
+
+let message=`Hôm nay là Valentine 14/3...
+
+Trong thế giới rộng lớn này có hàng triệu người nhưng em lại gặp đúng anh.
+
+Anh có thể không lãng mạn nhưng anh vẫn là người em muốn ở cạnh.
+
+Hy vọng những Valentine sau này người đứng cạnh anh vẫn là em.`
+
+let i=0
+
+function typeLetter(){
+
+if(i<message.length){
+
+document.getElementById("text").innerHTML+=message.charAt(i)
+
+i++
+
+setTimeout(typeLetter,40)
+
+}
+
+}
+
+/* tim bay */
+
+setInterval(function(){
+
+let heart=document.createElement("div")
+
+heart.className="heart"
+
+heart.innerHTML="💗"
+
+heart.style.left=Math.random()*100+"vw"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),5000)
+
+},300)
+
+</script>
+
+</body>
+</html>
